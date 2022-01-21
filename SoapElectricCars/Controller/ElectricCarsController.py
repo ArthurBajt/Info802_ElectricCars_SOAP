@@ -15,10 +15,11 @@ class ElectricCarsController(object):
 
 
     @classmethod
-    def generate_fake_cars(cls):
+    def generate_fake_cars(cls, number: int = 300):
+        number = max(0, number)
         fake: Faker = Faker()
         cls.collection.drop()
-        for _ in range(1500):
+        for _ in range(number):
             car: dict = {
                 "name": fake.first_name() + " " + fake.bs(),
                 "range": randrange(100, 1200, 5),
